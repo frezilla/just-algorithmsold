@@ -5,10 +5,12 @@ import lombok.Data;
 import lombok.Getter;
 
 /**
- * Un {@code NaturalNumber} est un nombre appartenant à l'ensemble N des
+ * Un {@code NaturalNumber} est un nombre appartenant à l'ensemble N des 
  * entiers naturels conformément à la définition originelle due à Richard
  * Dedekind (le zéro n'appartient pas à l'ensemble des entiers naturels).
  * 
+ * @see Comparable
+ * @see NumberSystems
  * @see WholeNumber
  */
 @Data
@@ -79,12 +81,10 @@ public final class NaturalNumber implements Comparable<NaturalNumber>, NumberSys
     }
 
     /**
-     * Retourne un {@code NaturalNumber} à partir de la valeur
-     * {@code long} .
+     * Retourne un {@code NaturalNumber} à partir de la valeur {@code long}.
      *
      * @param l une valeur numérique de type {@code long}
-     * @return Une instance d'un {@code NaturalNumber} qui représente 
-     * {@code l} .
+     * @return Une instance d'un {@code NaturalNumber} qui représente {@code l}.
      */
     public static NaturalNumber valueOf(long l) {
         return new NaturalNumber(WholeNumber.valueOf(l));

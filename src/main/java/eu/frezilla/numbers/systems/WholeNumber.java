@@ -6,13 +6,16 @@ import lombok.Getter;
 import lombok.NonNull;
 
 /**
- * Un {@code WholeNumber} est un nombre appartenant à l'ensemble N des
- * entiers naturels.
- * 
- * <p> Un {@code WholeNumber} autorise la valeur zéro contrairement à un 
+ * Un {@code WholeNumber} est un nombre appartenant à l'ensemble N des entiers
+ * naturels.
+ *
+ * <p>
+ * Un {@code WholeNumber} autorise la valeur zéro contrairement à un
  * {@code NaturalNumber} .</p>
  *
+ * @see Comparable
  * @see NaturalNumber
+ * @see NumberSystems
  */
 @Data
 public final class WholeNumber implements Comparable<WholeNumber>, NumberSystems<WholeNumber> {
