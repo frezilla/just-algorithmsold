@@ -1,7 +1,9 @@
 package eu.frezilla.numbers.systems.test;
 
+import eu.frezilla.numbers.systems.NaturalNumber;
 import eu.frezilla.numbers.systems.RealNumber;
 import eu.frezilla.numbers.systems.Sign;
+import eu.frezilla.numbers.systems.WholeNumber;
 import eu.frezilla.utils.TestUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -53,6 +55,22 @@ class RealNumberTest {
         Assertions.assertEquals(Sign.NEGATIVE, RealNumber.valueOf(-1.0d * Math.abs(randomValue1) - 1.0d).getSign());
         Assertions.assertEquals(Sign.ZERO, RealNumber.valueOf(0.0d).getSign());
         Assertions.assertEquals(Sign.POSITIVE, RealNumber.valueOf(Math.abs(randomValue1) + 1.0).getSign());
+    }
+    
+    @Test
+    @DisplayName("Test de conversion")
+    void to() {
+        
+        
+    }
+    
+    @Test
+    @DisplayName("Test de construction")
+    void valueOf() {
+        RealNumber result = RealNumber.valueOf(10.0d);
+        
+        Assertions.assertEquals(result, RealNumber.valueOf(NaturalNumber.valueOf(10)));
+        Assertions.assertEquals(result, RealNumber.valueOf(WholeNumber.valueOf(10)));
     }
 
 }
