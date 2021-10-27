@@ -31,8 +31,8 @@ class WholeNumberTest {
     @Test
     @DisplayName("Comparaison d'objets")
     void compareTo() {
-        Assertions.assertTrue(wholeNumber1.compareTo(wholeNumber1) == 0);
-        Assertions.assertTrue(wholeNumber1.compareTo(WholeNumber.valueOf(randomValue1)) == 0);
+        Assertions.assertEquals(0, wholeNumber1.compareTo(wholeNumber1));
+        Assertions.assertEquals(0, wholeNumber1.compareTo(WholeNumber.valueOf(randomValue1)));
         Assertions.assertTrue(wholeNumber1.compareTo(WholeNumber.valueOf(randomValue1 + randomValue2)) < 0);
         if (randomValue1 < randomValue2) {
             Assertions.assertTrue(wholeNumber2.compareTo(wholeNumber1) > 0);
@@ -50,16 +50,16 @@ class WholeNumberTest {
         long mulResult = randomValue1 * randomValue2;
         long divResult = randomValue1 / randomValue2;
         
-        Assertions.assertTrue(wholeNumber1.add(wholeNumber2).equals(WholeNumber.valueOf(addResult)));
+        Assertions.assertEquals(wholeNumber1.add(wholeNumber2), WholeNumber.valueOf(addResult));
         if (wholeNumber1.compareTo(wholeNumber2) < 0) {
             Assertions.assertNull(wholeNumber1.sub(wholeNumber2));
-            Assertions.assertTrue(wholeNumber2.sub(wholeNumber1).equals(WholeNumber.valueOf(subResult)));
+            Assertions.assertEquals(wholeNumber2.sub(wholeNumber1), WholeNumber.valueOf(subResult));
         } else {
             Assertions.assertNull(wholeNumber2.sub(wholeNumber1));
-            Assertions.assertTrue(wholeNumber1.sub(wholeNumber2).equals(WholeNumber.valueOf(subResult)));
+            Assertions.assertEquals(wholeNumber1.sub(wholeNumber2), WholeNumber.valueOf(subResult));
         }
-        Assertions.assertTrue(wholeNumber1.multiply(wholeNumber2).equals(WholeNumber.valueOf(mulResult)));
-        Assertions.assertTrue(wholeNumber1.divide(wholeNumber2).equals(WholeNumber.valueOf(divResult)));
+        Assertions.assertEquals(wholeNumber1.multiply(wholeNumber2), WholeNumber.valueOf(mulResult));
+        Assertions.assertEquals(wholeNumber1.divide(wholeNumber2), WholeNumber.valueOf(divResult));
     }
 
     @Test

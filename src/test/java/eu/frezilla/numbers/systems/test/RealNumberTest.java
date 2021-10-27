@@ -24,8 +24,8 @@ class RealNumberTest {
     @Test
     @DisplayName("Comparaison d'objets")
     void compareTo() {
-        Assertions.assertTrue(realNumber1.compareTo(realNumber1) == 0);
-        Assertions.assertTrue(realNumber1.compareTo(RealNumber.valueOf(randomValue1)) == 0);
+        Assertions.assertEquals(0, realNumber1.compareTo(realNumber1));
+        Assertions.assertEquals(0, realNumber1.compareTo(RealNumber.valueOf(randomValue1)));
         Assertions.assertTrue(realNumber1.compareTo(RealNumber.valueOf(randomValue1 + Math.abs(randomValue2))) < 0);
         Assertions.assertTrue(realNumber1.compareTo(RealNumber.valueOf(randomValue1 - Math.abs(randomValue2))) > 0);
         Assertions.assertThrows(NullPointerException.class, () -> {
@@ -41,10 +41,10 @@ class RealNumberTest {
         double mulResult = randomValue1 * randomValue2;
         double divResult = randomValue1 / randomValue2;
         
-        Assertions.assertTrue(realNumber1.add(realNumber2).equals(RealNumber.valueOf(addResult)));
-        Assertions.assertTrue(realNumber1.sub(realNumber2).equals(RealNumber.valueOf(subResult)));
-        Assertions.assertTrue(realNumber1.multiply(realNumber2).equals(RealNumber.valueOf(mulResult)));
-        Assertions.assertTrue(realNumber1.divide(realNumber2).equals(RealNumber.valueOf(divResult)));
+        Assertions.assertEquals(realNumber1.add(realNumber2), RealNumber.valueOf(addResult));
+        Assertions.assertEquals(realNumber1.sub(realNumber2), RealNumber.valueOf(subResult));
+        Assertions.assertEquals(realNumber1.multiply(realNumber2), RealNumber.valueOf(mulResult));
+        Assertions.assertEquals(realNumber1.divide(realNumber2), RealNumber.valueOf(divResult));
     }
 
     @Test

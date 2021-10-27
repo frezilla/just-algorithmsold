@@ -13,7 +13,7 @@ import lombok.NonNull;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Sqrt {
     
-    private final static RealNumber TWO = RealNumber.valueOf(2.0d);
+    private static final RealNumber TWO = RealNumber.valueOf(2.0d);
     
     /**
      * Calcul de la racine carrée selon la méthode de Héron (ou méthode 
