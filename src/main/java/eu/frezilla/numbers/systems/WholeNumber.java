@@ -44,11 +44,11 @@ public final class WholeNumber implements Comparable<WholeNumber>, NumberSystems
     public WholeNumber divide(WholeNumber val) {
         return new WholeNumber(this.getValue() / val.getValue());
     }
-
+    
     @Override
     public Sign getSign() {
         if (this.getValue() < 0) {
-            return Sign.NEGATIVE;
+            throw new RuntimeException("Negative value is not allowed for WholeNumber");
         } else if (this.getValue() == 0) {
             return Sign.ZERO;
         } else {

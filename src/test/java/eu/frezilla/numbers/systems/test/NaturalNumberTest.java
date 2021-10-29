@@ -69,11 +69,34 @@ class NaturalNumberTest {
         }
             
     }
+    
+    @Test
+    @DisplayName("Test d'égalité")
+    void equals() {
+        NaturalNumber natural1 = NaturalNumber.valueOf(randomValue1);
+        NaturalNumber natural2 = NaturalNumber.valueOf(randomValue1);
+        
+        Assertions.assertTrue(naturalNumber1.equals(naturalNumber1), "Equals must be reflexive");
+        Assertions.assertTrue(naturalNumber1.equals(natural1) && natural1.equals(naturalNumber1), "Equals must be symmetric");
+        Assertions.assertTrue(naturalNumber1.equals(natural1) && natural1.equals(natural2) && natural2.equals(naturalNumber1), "Equals must be transitive");
+        Assertions.assertFalse(naturalNumber1.equals(null));
+        Assertions.assertTrue(naturalNumber1.equals(natural1));
+        Assertions.assertFalse(naturalNumber1.equals(NaturalNumber.valueOf(randomValue1 + 1)));
+        Assertions.assertFalse(natural1.equals(new String()));
+        
+    }
 
     @Test
     @DisplayName("Test du signe")
     void getSign() {
         Assertions.assertEquals(Sign.POSITIVE, NaturalNumber.valueOf(randomValue1).getSign());
+    }
+    
+    @Test
+    @DisplayName("Test de conversion")
+    void to() {
+        Assertions.assertEquals(randomValue1, naturalNumber1.toLong());
+        Assertions.assertEquals(Long.toString(randomValue2), naturalNumber2.toString());
     }
 
 }
