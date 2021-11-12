@@ -37,6 +37,19 @@ public class RealNumber implements Comparable<RealNumber>, NumberSystems<RealNum
     public RealNumber divide(RealNumber val) {
         return new RealNumber(this.getValue() / val.getValue());
     }
+    
+    public WholeNumber getDecimalValue() {
+        return WholeNumber.valueOf((long) (this.getValue() % 1.0d));
+    }
+    
+    /**
+     * Retourne la partie entière de la valeur courante.
+     * 
+     * @return {@code IntegerNumber} représentant la partie entière.
+     */
+    public IntegerNumber getIntegerValue() {
+        return IntegerNumber.valueOf((long) (this.getValue() / 1.0d));
+    }
 
     @Override
     public Sign getSign() {
@@ -81,6 +94,18 @@ public class RealNumber implements Comparable<RealNumber>, NumberSystems<RealNum
      */    
     public static RealNumber valueOf(double d) {
         return new RealNumber(d);
+    }
+    
+    /**
+     * Retourne un {@code RealNumber} à partir de la valeur 
+     * {@code IntegerNumber}.
+     * 
+     * @param integerValue une valeur numérique de type {@code IntegerNumber}
+     * @return Une instance d'un {@code RealNumber} qui représente 
+     * {@code integerValue}
+     */
+    public static RealNumber valueOf(@NonNull IntegerNumber integerValue) {
+        return valueOf(integerValue.toLong());
     }
     
     /**

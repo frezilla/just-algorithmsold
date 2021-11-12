@@ -20,11 +20,11 @@ import lombok.NonNull;
 @Data
 public final class WholeNumber implements Comparable<WholeNumber>, NumberSystems<WholeNumber> {
 
-    @Getter(AccessLevel.PRIVATE)
-    private final long value;
+    @Getter(AccessLevel.PACKAGE)
+    private final IntegerNumber value;
 
-    private WholeNumber(long value) {
-        if (value < 0) {
+    private WholeNumber(IntegerNumber value) {
+        if (Sign.POSITIVE != value.getSign() && Sign.ZERO != value.getSign()) {
             throw new IllegalArgumentException("Whole number must be an interger from 0 to infinity");
         }
         this.value = value;
@@ -32,33 +32,33 @@ public final class WholeNumber implements Comparable<WholeNumber>, NumberSystems
 
     @Override
     public WholeNumber add(WholeNumber val) {
-        return new WholeNumber(this.getValue() + val.getValue());
+        return new WholeNumber(this.getValue().add(val.getValue()));
     }
 
     @Override
     public int compareTo(WholeNumber val) {
-        return Long.compare(this.getValue(), val.getValue());
+        return this.getValue().compareTo(val.getValue());
     }
 
     @Override
     public WholeNumber divide(WholeNumber val) {
-        return new WholeNumber(this.getValue() / val.getValue());
+        WholeNumber result;
+        try {
+            result = new WholeNumber(this.getValue().divide(val.getValue()));
+        } catch (IllegalArgumentException e) {
+            result = null;
+        }
+        return result;
     }
     
     @Override
     public Sign getSign() {
-        if (this.getValue() < 0) {
-            throw new RuntimeException("Negative value is not allowed for WholeNumber");
-        } else if (this.getValue() == 0) {
-            return Sign.ZERO;
-        } else {
-            return Sign.POSITIVE;
-        }
+        return this.getValue().getSign();
     }
 
     @Override
     public WholeNumber multiply(WholeNumber val) {
-        return new WholeNumber(this.getValue() * val.getValue());
+        return new WholeNumber(this.getValue().multiply(val.getValue()));
 
     }
 
@@ -67,7 +67,7 @@ public final class WholeNumber implements Comparable<WholeNumber>, NumberSystems
         if (this.compareTo(val) < 0) {
             return null;
         } else {
-            return new WholeNumber(this.getValue() - val.getValue());
+            return new WholeNumber(this.getValue().sub(val.getValue()));
         }
     }
 
@@ -77,12 +77,12 @@ public final class WholeNumber implements Comparable<WholeNumber>, NumberSystems
      * @return La valeur numérique représentée par l'objet.
      */
     public long toLong() {
-        return this.getValue();
+        return this.getValue().toLong();
     }
 
     @Override
     public String toString() {
-        return Long.toString(this.getValue());
+        return this.getValue().toString();
     }
 
     /**
@@ -92,7 +92,7 @@ public final class WholeNumber implements Comparable<WholeNumber>, NumberSystems
      * @return Une instance d'un {@code WholeNumber} qui représente l.
      */
     public static WholeNumber valueOf(long l) {
-        return new WholeNumber(l);
+        return new WholeNumber(IntegerNumber.valueOf(l));
     }
 
     /**
