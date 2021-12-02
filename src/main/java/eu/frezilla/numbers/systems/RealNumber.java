@@ -15,6 +15,8 @@ import lombok.NonNull;
  */
 @Data
 public class RealNumber implements Comparable<RealNumber>, NumberSystems<RealNumber> {
+    
+    public static final int DECIMALVALUE_PRECISION = 100;
 
     @Getter(AccessLevel.PRIVATE)
     private final double value;
@@ -39,7 +41,15 @@ public class RealNumber implements Comparable<RealNumber>, NumberSystems<RealNum
     }
     
     public WholeNumber getDecimalValue() {
-        return WholeNumber.valueOf((long) (this.getValue() % 1.0d));
+        return this.getDecimalValue(DECIMALVALUE_PRECISION);
+    }
+    
+    public WholeNumber getDecimalValue(int precision) {
+        int p = Math.min(precision, DECIMALVALUE_PRECISION);
+        String v = Double.toString(this.getValue() % 1.0d);
+        v = v.substring(2, v.length());
+        v = v.substring(0, Math.min(p, v.length()));
+        return WholeNumber.valueOf(Long.parseLong(v));
     }
     
     /**

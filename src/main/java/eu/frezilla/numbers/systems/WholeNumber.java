@@ -51,6 +51,16 @@ public final class WholeNumber implements Comparable<WholeNumber>, NumberSystems
         return result;
     }
     
+    /**
+     * Retourne la parité d'un entier. Si le nombre est divisible par 2, il est
+     * pair ({@code Parity.EVEN}), sinon il est impair ({@code Parity.ODD}).
+     * 
+     * @return Parité du nombre.
+     */
+    public Parity getParity() {
+        return getValue().getParity();
+    }
+    
     @Override
     public Sign getSign() {
         return this.getValue().getSign();

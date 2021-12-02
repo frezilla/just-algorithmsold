@@ -39,6 +39,20 @@ public class IntegerNumber implements Comparable<IntegerNumber>, NumberSystems<I
         }
         return new IntegerNumber(this.getValue() / val.getValue());
     }
+    
+    /**
+     * Retourne la parité d'un entier. Si le nombre est divisible par 2, il est
+     * pair ({@code Parity.EVEN}), sinon il est impair ({@code Parity.ODD}).
+     * 
+     * @return Parité du nombre.
+     */
+    public Parity getParity() {
+        if (value%2 == 0) {
+            return Parity.EVEN;
+        } else {
+            return Parity.ODD;
+        }
+    }
 
     @Override
     public Sign getSign() {
